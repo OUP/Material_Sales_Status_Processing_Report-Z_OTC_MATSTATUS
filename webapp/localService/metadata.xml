@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://s4dbasdev130:443/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZOTC_MAT_STATUS_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="I_DistributionChannelType" sap:label="Distribution Channel" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="DistributionChannel"/>
+                </Key>
+                <Property Name="DistributionChannel" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:text="DistributionChannel_Text" sap:label="Distribution Channel"/>
+                <Property Name="DistributionChannel_Text" Type="Edm.String" MaxLength="20" sap:label="Distribution Channel Description" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="I_MaterialStdVHType" sap:label="Material" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:text="Material_Text" sap:label="Material" sap:quickinfo="Material Number"/>
+                <Property Name="Material_Text" Type="Edm.String" MaxLength="40" sap:label="Material description" sap:creatable="false" sap:updatable="false"/>
+            </EntityType>
+            <EntityType Name="I_MaterialVHType" sap:label="Material Value Help" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Material"/>
+                </Key>
+                <Property Name="Material" Type="Edm.String" Nullable="false" MaxLength="40" sap:display-format="UpperCase" sap:text="Material_Text" sap:label="Material" sap:quickinfo="Material Number"/>
+                <Property Name="Material_Text" Type="Edm.String" MaxLength="40" sap:label="Material description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MaterialType" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Material type"/>
+                <Property Name="MaterialGroup" Type="Edm.String" MaxLength="9" sap:display-format="UpperCase" sap:label="Material Group"/>
+                <Property Name="MaterialBaseUnit" Type="Edm.String" MaxLength="3" sap:label="Base Unit of Measure" sap:semantics="unit-of-measure"/>
+                <Property Name="MaterialGrossWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="MaterialWeightUnit" sap:label="Gross weight"/>
+                <Property Name="MaterialNetWeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="MaterialWeightUnit" sap:label="Net weight"/>
+                <Property Name="MaterialWeightUnit" Type="Edm.String" MaxLength="3" sap:label="Weight unit" sap:quickinfo="Weight Unit" sap:semantics="unit-of-measure"/>
+                <Property Name="MaterialManufacturerNumber" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Manufacturer" sap:quickinfo="Manufacturer number"/>
+                <Property Name="MaterialManufacturerPartNumber" Type="Edm.String" MaxLength="40" sap:display-format="UpperCase" sap:label="Mfr Part Number" sap:quickinfo="Manufacturer Part Number"/>
+                <Property Name="AuthorizationGroup" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Authorization Group"/>
+                <Property Name="IsBatchManagementRequired" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Batch management" sap:quickinfo="Batch management requirement indicator"/>
+            </EntityType>
+            <EntityType Name="I_ProductTypeTextType" sap:label="Product Type Text" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProductType"/>
+                    <PropertyRef Name="Language"/>
+                </Key>
+                <Property Name="ProductType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Product Type"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="MaterialTypeName" Type="Edm.String" MaxLength="25" sap:label="Product Type Descr." sap:quickinfo="Description of product type"/>
+            </EntityType>
+            <EntityType Name="I_SalesDistributionStatusTextType" sap:label="I view for TVMST" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ProductSalesStatus"/>
+                    <PropertyRef Name="Language"/>
+                </Key>
+                <Property Name="ProductSalesStatus" Type="Edm.String" Nullable="false" MaxLength="2" sap:display-format="UpperCase" sap:label="Local Sales Status" sap:quickinfo="Stock Status"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="ProductSalesStatusDescription" Type="Edm.String" MaxLength="20" sap:label="Description"/>
+            </EntityType>
+            <EntityType Name="I_SalesDocumentItemCategoryType" sap:label="Sales Document Item Category" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesDocumentItemCategory"/>
+                </Key>
+                <Property Name="SalesDocumentItemCategory" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="SalesDocumentItemCategory_Text" sap:label="Item category" sap:quickinfo="Sales document item category"/>
+                <Property Name="SalesDocumentItemCategory_Text" Type="Edm.String" MaxLength="20" sap:label="Description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="ScheduleLineIsAllowed" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Sched.lines allowed" sap:quickinfo="Schedule lines allowed"/>
+            </EntityType>
+            <EntityType Name="I_SalesOrderStdVHType" sap:label="Sales Order" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrder"/>
+                </Key>
+                <Property Name="SalesOrder" Type="Edm.String" Nullable="false" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales Order"/>
+            </EntityType>
+            <EntityType Name="I_SalesOrderTypeType" sap:label="Sales Order Types" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrderType"/>
+                </Key>
+                <Property Name="SalesOrderType" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="SalesOrderType_Text" sap:label="Sales Order Type"/>
+                <Property Name="SalesOrderType_Text" Type="Edm.String" MaxLength="20" sap:label="Description" sap:quickinfo="Sales Document Type Description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrderProcessingType" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Indicator" sap:quickinfo="Sales document indicator (for display in TVAK only)"/>
+                <Property Name="OrderTypeForBillingRequest" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Billing request" sap:quickinfo="Order type for request for billing"/>
+            </EntityType>
+            <EntityType Name="I_SalesOrganizationType" sap:label="Sales Organization" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrganization"/>
+                </Key>
+                <Property Name="SalesOrganization" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:text="SalesOrganization_Text" sap:label="Sales Organization"/>
+                <Property Name="SalesOrganization_Text" Type="Edm.String" MaxLength="20" sap:label="Sales Organization Description" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="SalesOrganizationCurrency" Type="Edm.String" MaxLength="5" sap:label="Statistics Currency" sap:quickinfo="Statistics currency" sap:semantics="currency-code"/>
+                <Property Name="CompanyCode" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Company Code" sap:quickinfo="Company code of the sales organization"/>
+                <Property Name="IntercompanyBillingCustomer" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Cust.Inter-Co.Bill." sap:quickinfo="Customer number for intercompany billing"/>
+            </EntityType>
+            <EntityType Name="ZOTC_C_MATSTATUSType" sap:label="Material Sales Status Process" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="SalesOrganization"/>
+                </Key>
+                <Property Name="SalesOrganization" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Sales Organization" sap:value-list="standard"/>
+                <Property Name="Product" Type="Edm.String" MaxLength="82" sap:value-list="standard"/>
+                <Property Name="ChangeDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Date" sap:quickinfo="Creation date of the change document"/>
+                <Property Name="FromStatus" Type="Edm.String" MaxLength="254" sap:value-list="standard"/>
+                <Property Name="ToStatus" Type="Edm.String" MaxLength="254" sap:value-list="standard"/>
+                <Property Name="SalesOrder" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Sales Order" sap:value-list="standard"/>
+                <Property Name="SalesOrderItem" Type="Edm.String" MaxLength="6" sap:display-format="NonNegative" sap:label="Item" sap:quickinfo="Sales Order Item"/>
+                <Property Name="SalesOrderItemCategory" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Item category" sap:quickinfo="Sales document item category" sap:value-list="standard"/>
+                <Property Name="log" Type="Edm.String" MaxLength="20"/>
+            </EntityType>
+            <EntityContainer Name="ZOTC_MAT_STATUS_SRV_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="I_DistributionChannel" EntityType="ZOTC_MAT_STATUS_SRV.I_DistributionChannelType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_MaterialStdVH" EntityType="ZOTC_MAT_STATUS_SRV.I_MaterialStdVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_MaterialVH" EntityType="ZOTC_MAT_STATUS_SRV.I_MaterialVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_ProductTypeText" EntityType="ZOTC_MAT_STATUS_SRV.I_ProductTypeTextType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_SalesDistributionStatusText" EntityType="ZOTC_MAT_STATUS_SRV.I_SalesDistributionStatusTextType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="I_SalesDocumentItemCategory" EntityType="ZOTC_MAT_STATUS_SRV.I_SalesDocumentItemCategoryType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_SalesOrderStdVH" EntityType="ZOTC_MAT_STATUS_SRV.I_SalesOrderStdVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_SalesOrderType" EntityType="ZOTC_MAT_STATUS_SRV.I_SalesOrderTypeType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="I_SalesOrganization" EntityType="ZOTC_MAT_STATUS_SRV.I_SalesOrganizationType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:searchable="true" sap:content-version="1"/>
+                <EntitySet Name="ZOTC_C_MATSTATUS" EntityType="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType/SalesOrganization" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Sales Organization"/>
+                        <PropertyValue Property="CollectionPath" String="I_SalesOrganization"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrganization"/>
+                                    <PropertyValue Property="ValueListProperty" String="SalesOrganization"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SalesOrganization_Text"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SalesOrganizationCurrency"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="CompanyCode"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="IntercompanyBillingCustomer"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
+            </Annotations>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType/Product" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Material Value Help"/>
+                        <PropertyValue Property="CollectionPath" String="I_MaterialVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Product"/>
+                                    <PropertyValue Property="ValueListProperty" String="Material"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Material_Text"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialType"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialBaseUnit"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialGrossWeight"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialNetWeight"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialWeightUnit"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialManufacturerNumber"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="MaterialManufacturerPartNumber"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="AuthorizationGroup"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="IsBatchManagementRequired"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType/FromStatus" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="I view for TVMST"/>
+                        <PropertyValue Property="CollectionPath" String="I_SalesDistributionStatusText"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="FromStatus"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCTSALESSTATUS"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProductSalesStatus"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Language"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProductSalesStatusDescription"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType/ToStatus" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="I view for TVMST"/>
+                        <PropertyValue Property="CollectionPath" String="I_SalesDistributionStatusText"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="ToStatus"/>
+                                    <PropertyValue Property="ValueListProperty" String="PRODUCTSALESSTATUS"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProductSalesStatus"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Language"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ProductSalesStatusDescription"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType/SalesOrder" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Sales Order"/>
+                        <PropertyValue Property="CollectionPath" String="I_SalesOrderStdVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrder"/>
+                                    <PropertyValue Property="ValueListProperty" String="SalesOrder"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_C_MATSTATUSType/SalesOrderItemCategory" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Sales Document Item Category"/>
+                        <PropertyValue Property="CollectionPath" String="I_SalesDocumentItemCategory"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="SalesOrderItemCategory"/>
+                                    <PropertyValue Property="ValueListProperty" String="SalesDocumentItemCategory"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="SalesDocumentItemCategory_Text"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="ScheduleLineIsAllowed"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZOTC_MAT_STATUS_SRV.ZOTC_MAT_STATUS_SRV_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZOTC_MAT_STATUS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="https://s4dbasdev130:443/sap/opu/odata/sap/ZOTC_MAT_STATUS_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
